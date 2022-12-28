@@ -88,3 +88,53 @@ LExit:
 	inkey "Press any key to exit."
 	exit
 end LStart
+
+
+
+
+
+
+
+
+
+LSR:
+    newline
+    printf ("sred=")
+    outint BX  
+    MOV sred, BX
+    newline
+    
+    MOV EAX, 0
+    MOV EBX, 0
+    MOV ECX, 0
+    MOV EDX, 0
+    MOV CX, N
+    
+LLL:
+    CMP CX, 0
+    JE READLIST
+    MOV DX, A[BX]
+    ;outint DX
+    CMP DX, sred
+    JL LLL2
+    ADD BX, 2
+    LOOP LLL
+    
+LLL2:   
+    MOV A[BX], -1
+    ADD BX, 2
+    LOOP LLL
+    
+READLIST:
+    MOV EAX, 0
+    MOV EBX, 0
+    MOV ECX, 0
+    MOV EDX, 0
+    MOV CX, N
+READLIST2:  
+    CMP CX, 0
+    JE LExit
+    MOV DX, A[BX]
+    outint DX
+    ADD BX, 2
+    LOOP READLIST2
